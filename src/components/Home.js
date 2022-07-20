@@ -8,7 +8,7 @@ const Home = () => {
         <div className="card-img-overlay">
           <div className='container'>
           <h1 className="card-title ">SHOP</h1>
-          <p className="card-text fs-2">Check out all trends</p>
+          <p className="card-text fs-2">Check out all trends here!!!</p>
           </div>
          
           
