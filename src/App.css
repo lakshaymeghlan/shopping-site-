@@ -1,4 +1,4 @@
-.App {
+/* .App {
   text-align: center;
 }
 
@@ -35,4 +35,32 @@
   to {
     transform: rotate(360deg);
   }
+} */
+
+body{
+  background-color: #202020;
+}
+.products{
+  color: white;
+  padding: 2rem;
+  
+  
+}
+
+.anchor_cls{
+  color: white;
+  text-decoration: underline;
+}
+.second_head{
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  text-decoration: underline;
+}
+
+.card-text{
+  text-align: center;
+}
+.card-title{
+  text-align: center;
 }
