@@ -3,9 +3,6 @@ import { SocialIcon } from 'react-social-icons';
 import {
   MDBFooter,
   MDBContainer,
-  MDBCol,
-  MDBRow,
-  MDBIcon
 } from 'mdb-react-ui-kit';
 
  function Footer() {

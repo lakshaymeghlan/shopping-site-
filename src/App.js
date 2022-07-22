@@ -1,9 +1,14 @@
 import './App.css';
 import Navbar from './components/Navbar'
-import SignIn from './components/SignIn';
+import Login from './components/login/Login';
 import Home from './components/Home';
 import Products from './components/Products';
-// import {BrowserRouter, Routes, Route} from "react-router-dom"
+import {
+  Route,
+  Switch,
+  Redirect,
+  link,
+} from "react-router-dom";
 import Footer from './components/Footer';
 
 
@@ -11,26 +16,16 @@ import Footer from './components/Footer';
 function App() {
   return (
     <div>
-      <Navbar/>
-      <SignIn/>
-      <Home/>
-      {/* <BrowserRouter>
-      <Routes>
-      <Route path='/'> */}
-        <Products/>
-        {/* </Route>
-      </Routes>
-      </BrowserRouter> */}
-      
+      <Navbar />
+      {/* <Login/> */}
+          <Home />
+      <Switch>
+        <Route path="/Products" element={<Products />} />
+        <Products />y
+      </Switch>
+      <Footer />
 
 
-      <Footer/>
-
-
-     
-    
-    
-      
     </div>
   );
 }

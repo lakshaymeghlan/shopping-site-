@@ -60,7 +60,16 @@ body{
 
 .card-text{
   text-align: center;
+  color: white;
 }
 .card-title{
   text-align: center;
+  color: white;
+}
+
+.nav-items{
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  margin-right: 30px;
 }
