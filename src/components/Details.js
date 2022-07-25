@@ -5,7 +5,6 @@ import React from "react";
 function Details() {
   return (
     <>
-      
       <div className="container">
         <h1 className="second_head">PRODUCTS</h1>
         <div className="app col-10 mx-auto col-md-6 col-lg-3 my-3">

@@ -1,56 +1,53 @@
-import React,{useState} from 'react'
-import {Box, Button ,TextField, Typography} from '@mui/material'
-import LoginIcon from '@mui/icons-material/Login';
-import HowToRegIcon from '@mui/icons-material/HowToReg';
-// import Navbar from '../Navbar';
+import React, { Component } from "react";
 
-const Login = () => {
-    
-    const [isSignup, setIsSignup] = useState(false);
-    const [inputs, setinputs] = useState({
-        name:"", email:"", password:"",
-    })
-
-    const handleSubmit = (e)=>{
-        e.preventDefault();
-        console.log(inputs);
-    };
+export default class Login extends Component {
+  render() {
     return (
-        <div>
-            <form onSubmit={handleSubmit} >
-                <Box className='login' display="flex" flexDirection={"column"}
-                    maxWidth={400}
-                    alignItems="center"
-                    justifyContent={"Center"} margin="auto" marginTop={5} marginBottom={5}
-                    padding={3} borderRadius={5} boxShadow={'5px 5px 10px #ccc'}
-                    sx={{
-                        ":hover": {
-                            boxShadow: '10px 10px 20px #ccc'
-                        }
-                    }}>
-                    <Typography variant="h2" padding={3} textAlign="center">
-                        {isSignup ? "Signup":"Login"}
-                    </Typography>
-                    {isSignup && (<TextField name="name" value={inputs.name}  margin="normal" type={'text'} variant='outlined' placeholder='Name' />)}
+      <form onSubmit={this.handleSubmit}>
+        <h3>Sign In</h3>
 
-                    <TextField name="email" value={inputs.email} margin="normal" type={'email'} variant='outlined' placeholder='Email' />
-
-                    <TextField name="password" value={inputs.password}  margin="normal" type={'password'} variant='outlined' placeholder='Password' />
-
-                    <Button endIcon={isSignup ? <HowToRegIcon/> : <LoginIcon/>} type='submit' sx={{ marginTop: 3, borderRadius: 3}} variant="contained" color="warning" >
-                        {isSignup ? "Signup":"Login"}
-                        </Button>
-                    
-                    <Button endIcon={isSignup ? <LoginIcon/> : <HowToRegIcon/>} onClick={()=>setIsSignup(!isSignup)} sx={{ marginTop: 3, borderRadius: 3}} >
-                        Change to {isSignup ? "Login" : "Signup"}
-                        </Button>
-
-
-
-                </Box>
-            </form>
+        <div className="mb-3">
+          <label>Email address</label>
+          <input
+            type="email"
+            className="form-control"
+            placeholder="Enter email"
+            onChange={(e) => this.setState({ email: e.target.value })}
+          />
         </div>
-    ) 
-}
 
-export default Login
+        <div className="mb-3">
+          <label>Password</label>
+          <input
+            type="password"
+            className="form-control"
+            placeholder="Enter password"
+            onChange={(e) => this.setState({ password: e.target.value })}
+          />
+        </div>
+
+        <div className="mb-3">
+          <div className="custom-control custom-checkbox">
+            <input
+              type="checkbox"
+              className="custom-control-input"
+              id="customCheck1"
+            />
+            <label className="custom-control-label" htmlFor="customCheck1">
+              Remember me
+            </label>
+          </div>
+        </div>
+
+        <div className="d-grid">
+          <button type="submit" className="btn btn-primary">
+            Submit
+          </button>
+        </div>
+        <p className="forgot-password text-right">
+          <a href="/sign-up">Sign Up</a>
+        </p>
+      </form>
+    );
+  }
+}
