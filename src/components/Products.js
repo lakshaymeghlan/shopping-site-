@@ -14,7 +14,7 @@ function Products() {
             {Data.products.map(products => {
               return (
                 <>
-                   <Link to="/Details"> <h4 className='anchor_cls'>{products.name}</h4></Link>
+                   <Link to="/product_details"> <h4 className='anchor_cls'>{products.name}</h4></Link>
                   {/* <p>{products.desc}</p> */}
                   <img src={products.small} alt={products.name} />
 

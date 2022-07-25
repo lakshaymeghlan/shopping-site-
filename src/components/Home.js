@@ -1,9 +1,11 @@
 import React from 'react'
 import photo from '../assest/1.jpg'
+import Products from './Products'
 
 
 const Home = () => {
   return (
+    <>
     <div className='hero'>
       <div className="card bg-dark text-black border-0">
         <img className="card-img" src={photo} alt="Card image" height="550px" />
@@ -15,6 +17,10 @@ const Home = () => {
         </div>
       </div>
     </div>
+   
+    <Products/>
+    </>
+    
   )
 }
 

@@ -13,6 +13,7 @@ import Products from "./components/Products";
 // } from "react-router-dom";
 import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
 import Footer from "./components/Footer";
+import Details from "./components/Details";
 
 function App() {
   return (
@@ -43,7 +44,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="/products" element={<Products />} />
           <Route path="/login" element={<Login />} />
-          {/* <Route path="*" element={<NoPage />} /> */}
+          <Route path="/product_details" element={<Details />} />
         </Routes>
         <Footer />
       </BrowserRouter>

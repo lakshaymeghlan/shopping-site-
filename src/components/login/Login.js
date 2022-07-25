@@ -18,10 +18,10 @@ const Login = () => {
     return (
         <div>
             <form onSubmit={handleSubmit} >
-                <Box display="flex" flexDirection={"column"}
+                <Box className='login' display="flex" flexDirection={"column"}
                     maxWidth={400}
                     alignItems="center"
-                    justifyContent={"Center"} margin="auto" marginTop={5}
+                    justifyContent={"Center"} margin="auto" marginTop={5} marginBottom={5}
                     padding={3} borderRadius={5} boxShadow={'5px 5px 10px #ccc'}
                     sx={{
                         ":hover": {
