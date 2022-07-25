@@ -1,10 +1,11 @@
 import React,{useState} from 'react'
-// import { Box, Button, TextField, Typography } from '@material-ui/core'
 import {Box, Button ,TextField, Typography} from '@mui/material'
 import LoginIcon from '@mui/icons-material/Login';
 import HowToRegIcon from '@mui/icons-material/HowToReg';
+// import Navbar from '../Navbar';
 
 const Login = () => {
+    
     const [isSignup, setIsSignup] = useState(false);
     const [inputs, setinputs] = useState({
         name:"", email:"", password:"",
