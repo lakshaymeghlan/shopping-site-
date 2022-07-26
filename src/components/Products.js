@@ -12,24 +12,18 @@ function Products() {
             {Data.products.map((products) => {
               return (
                 <>
-                <div className="row">
-                  <div className="column">
                   <Link path to="/product_details">
                     {" "}
                     <h4 className="anchor_cls">{products.name}</h4>
                   </Link>
                   <img src={products.small} alt={products.name} />
-                  </div>
-                  </div>
                 </>
-                
               );
             })}
           </div>
         </div>
       </div>
     </>
-
   );
 }
 

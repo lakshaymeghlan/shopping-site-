@@ -1,5 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
+import photo from '../assest/cart.png'
 
 
 const Navbar = () => {
@@ -19,7 +20,7 @@ const Navbar = () => {
         </Link>
         </li>
         <li className="nav-item">
-        <Link to="" className='nav-items'>
+        <Link to="products" className='nav-items'>
             Products
         </Link>
         </li>
@@ -32,7 +33,7 @@ const Navbar = () => {
       </ul>
       <form className="d-flex" role="search">
         {/* <button className="btn btn-outline-success" type="submit">Cart</button> */}
-        <button className="btn" type="submit"><img src="../assest/cart.png" alt="img" /></button>
+        <button className="btn" type="submit"><img className='cart_img' src={photo} alt="img" /></button>
 
       </form>
     </div>

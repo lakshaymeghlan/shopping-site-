@@ -84,3 +84,19 @@ body{
 .anchor_cls{
   margin-top: 2rem;
 }
+.cart_img{
+  border-image-width: 3rem;
+}
+.cart_img{
+  width: 5rem;
+  height: 5rem;
+}
+.log_in{
+  color: white;
+
+}
+.sign_up{
+  border-radius: 6px;
+  margin-top: 8px;
+  
+}
