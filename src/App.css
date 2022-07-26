@@ -38,7 +38,11 @@
 } */
 
 body{
-  background-color: #202020;
+  background-color: #171f27;
+}
+
+.navbar{
+  background-color: #171f27;
 }
 .products{
   color: white;
@@ -76,4 +80,7 @@ body{
 .login{
   background-color: white;
   
+}
+.anchor_cls{
+  margin-top: 2rem;
 }

@@ -12,7 +12,8 @@ const Home = () => {
         <div className="card-img-overlay">
           <div className='container'>
           <h1 className="card-title ">SHOP</h1>
-          <p className="card-text fs-2">Check out all trends here!!!</p>
+          <h6 className="card-title ">And</h6>
+          <h1 className="card-text fs-2">Walk like a king.</h1>
           </div>
         </div>
       </div>
