@@ -8,6 +8,7 @@ import Products from "./components/Products";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import Details from "./components/Details";
+import UserDetails from './components/login/UserDetails';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/product_details" element={<Details />} />
+          <Route path="/userDetails" element={<UserDetails />} />
         </Routes>
         <Footer />
       </BrowserRouter>

@@ -9,14 +9,13 @@ function Products() {
         <h1 className="second_head">PRODUCTS</h1>
         <div className="app col-10 mx-auto col-md-6 col-lg-3 my-3">
           <div className="products ">
-            {Data.products.map((products) => {
+            {Data.products.map((product) => {
               return (
                 <>
-                  <Link path to="/product_details">
-                    {" "}
-                    <h4 className="anchor_cls">{products.name}</h4>
+                  <Link to="/product_details">
+                    <h4 className="anchor_cls">{product.name}</h4>
                   </Link>
-                  <img src={products.small} alt={products.name} />
+                  <img src={product.small} alt={product.name} />
                 </>
               );
             })}

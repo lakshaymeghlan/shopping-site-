@@ -17,15 +17,35 @@ export default class SignUp extends Component {
     e.preventDefault();
     const { fname, lname, email, password } = this.state;
     console.log(fname, lname, email, password);
+    fetch("http://localhost:5000/register", {
+      method: "POST",
+      crossDomain: true,
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+        "Access-Control-Allow-Origin": "*",
+      },
+      body: JSON.stringify({
+        fname,
+        email,
+        lname,
+        password,
+      }),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data, "userRegister");
+      });
   }
 
   render() {
     return (
+      <div className="container">
       <form onSubmit={this.handleSubmit}>
-        <h3>Sign Up</h3>
+        <h3 className="log_in">Sign Up</h3>
 
         <div className="mb-3">
-          <label>First name</label>
+          <label className="log_in">First name</label>
           <input
             type="text"
             className="form-control"
@@ -35,7 +55,7 @@ export default class SignUp extends Component {
         </div>
 
         <div className="mb-3">
-          <label>Last name</label>
+          <label className="log_in">Last name</label>
           <input
             type="text"
             className="form-control"
@@ -45,7 +65,7 @@ export default class SignUp extends Component {
         </div>
 
         <div className="mb-3">
-          <label>Email address</label>
+          <label className="log_in">Email address</label>
           <input
             type="email"
             className="form-control"
@@ -55,7 +75,7 @@ export default class SignUp extends Component {
         </div>
 
         <div className="mb-3">
-          <label>Password</label>
+          <label className="log_in">Password</label>
           <input
             type="password"
             className="form-control"
@@ -69,10 +89,11 @@ export default class SignUp extends Component {
             Sign Up
           </button>
         </div>
-        <p className="forgot-password text-right">
-          Already registered <Link to="/sign-in">sign in?</Link>
+        <p className="forgot-password text-right log_in">
+          Already registered <Link to="/Login"><button className="sign_up">sign in?</button></Link>
         </p>
       </form>
+      </div>
     );
   }
 }
