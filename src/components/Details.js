@@ -1,16 +1,16 @@
 import Data from "../db.json";
-import React, { useState, useEffect } from "react";
+import { useParams, Link } from "react-router-dom";
+import React from "react";
 
-function Details() {
-  console.log(Data);
-  let [products, setProducts] = useState(Data.products);
+const Details = () => {
+  const params = useParams();
+  console.log(params.product_id);
 
-  const resetProducts = () => {
-    setProducts(Data.products);
-  };
-  useEffect(() => {
-    resetProducts();
-  }, []);
+  const product_detail = Data.products.find((detail) => {
+    console.log(detail);
+    return detail.id == params.product_id;
+  });
+  console.log(product_detail);
 
   return (
     <>
@@ -18,19 +18,23 @@ function Details() {
         <h1 className="second_head">PRODUCTS DETAILS</h1>
         <div className="app col-10 mx-auto col-md-6 col-lg-3 my-3">
           <div className="products">
-            {products.map((product, index) => {
-             return <div key={product.id + "_" + index}>
-               <h3 key={product.id + "h3" + index}>{product.name}</h3>
-               <p key={product.desc + "p" + index}>{product.desc}</p>
-                <img key={product.large + "" + index} src={product.large} alt={product.name} />
-                 <button className="sign_up">Buy Now</button>
-              </div>;
-            })}
+            {product_detail && (
+              <div>
+                <h3>{product_detail.name}</h3>
+                <p>{product_detail.desc}</p>
+                <img src={product_detail.large} alt={product_detail.name} />
+                <Link to="Cart">
+                  {" "}
+                  <button className="sign_up">Buy Now</button>
+                </Link>
+              </div>
+            )}
           </div>
         </div>
       </div>
     </>
   );
-}
+};
 
 export default Details;
+
