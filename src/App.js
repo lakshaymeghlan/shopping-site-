@@ -9,12 +9,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import Details from "./components/Details";
 import UserDetails from './components/login/UserDetails';
+import Cart from './components/Cart';
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Navbar />
+        <Cart/>
         <Routes>
           <Route index element={<Home />} />
           <Route path="/products" element={<Products />} />

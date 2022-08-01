@@ -23,8 +23,10 @@ const Details = () => {
                 <h3>{product_detail.name}</h3>
                 <p>{product_detail.desc}</p>
                 <img src={product_detail.large} alt={product_detail.name} />
+                <h2>{product_detail.price}</h2>
                 <Link to="Cart">
                   {" "}
+                  
                   <button className="sign_up">Buy Now</button>
                 </Link>
               </div>
