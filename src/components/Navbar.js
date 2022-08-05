@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import photo from "../assest/cart.png";
-import Badge from "@mui/material/Badge";
+// import Badge from "@mui/material/Badge";
+// import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
 
 const Navbar = () => {
   return (
@@ -41,13 +42,17 @@ const Navbar = () => {
               </li>
             </ul>
             <form className="d-flex" role="search">
-              {/* <button className="btn btn-outline-success" type="submit">Cart</button> */}
 
-              <Badge className="badge" badgeContent={4} color="primary">
+              {/* <Badge className="badge" badgeContent={4} color="primary" onclick ="" > */}
+              <Link to="/cart" className="nav-items">
                 <button className="btn" type="submit">
                   <img className="cart_img" src={photo} alt="img" />
                 </button>
-              </Badge>
+                </Link>
+
+                
+                {/* <ShoppingCartIcon></ShoppingCartIcon>
+              </Badge> */}
             </form>
           </div>
         </div>
