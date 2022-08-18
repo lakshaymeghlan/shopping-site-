@@ -10,6 +10,7 @@ const Details = () => {
   const dispatch = useDispatch();
 
   const addToCart = (product) => {
+    console.log(product['id'],product['name'],product['price'] )
     const isAdded = cart.some((id) => {
       return id === product.id;
     });
@@ -36,7 +37,7 @@ const Details = () => {
     console.log(detail);
     return detail.id == params.product_id;
   });
-  console.log(product_detail);
+  // console.log(product_detail);
 
   return (
     <>
@@ -51,7 +52,7 @@ const Details = () => {
                 <img src={product_detail.large} alt={product_detail.name} />
                 <h2>{product_detail.price}</h2>
                 <Link to="/cart">
-                  <button className="sign_up" onClick={addToCart.bind(this)}>Buy Now</button>
+                  <button className="sign_up" onClick={addToCart.bind(this,product_detail)}>Buy Now</button>
                 </Link>
               </div>
             )}
