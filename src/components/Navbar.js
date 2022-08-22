@@ -1,8 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import photo from "../assest/cart.png";
-// import Badge from "@mui/material/Badge";
-// import ShoppingCartIcon from '@mui/icons-material/ShoppingCart';
+import { FaHeart } from "react-icons/fa";
 
 const Navbar = () => {
   return (
@@ -41,17 +40,21 @@ const Navbar = () => {
                 </Link>
               </li>
             </ul>
-            <form className="d-flex" role="search">
 
+            <Link to ="/Wishlist" className="nav-items">
+            <FaHeart size={30} className="whislist_nav">
+              {" "}
+            </FaHeart>
+            </Link>
+            <form className="d-flex" role="search">
               {/* <Badge className="badge" badgeContent={4} color="primary" onclick ="" > */}
               <Link to="/cart" className="nav-items">
                 <button className="btn" type="submit">
                   <img className="cart_img" src={photo} alt="img" />
                 </button>
-                </Link>
+              </Link>
 
-                
-                {/* <ShoppingCartIcon></ShoppingCartIcon>
+              {/* <ShoppingCartIcon></ShoppingCartIcon>
               </Badge> */}
             </form>
           </div>

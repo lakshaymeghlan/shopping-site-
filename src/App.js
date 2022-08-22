@@ -10,6 +10,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Footer from "./components/Footer";
 import Details from "./components/Details";
 import UserDetails from './components/login/UserDetails';
+import Wishlist from './components/Wishlist';
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<SignUp />} />
           <Route exact path="/cart" element={<Cart/>} />
+          <Route exact path="/wishlist" element={<Wishlist/>} />
           <Route path="/products_details/:product_id" element={<Details />} />
           <Route path="/userDetails" element={<UserDetails />} />
         </Routes>

@@ -109,8 +109,14 @@ body{
   
 }
 
-/* .foot{
-  
-
-  
+.whislist{
+  margin-left: 1rem;
+  size: 3rem;;
+}
+.whislist_nav{
+  margin-right:3rem;
+  color: red;
+}
+/* .FaHeart{
+  color:red;
 } */

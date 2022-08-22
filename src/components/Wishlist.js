@@ -1,32 +1,24 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { cartAction } from "./redux/cart";
+import { wishlistAction } from "./redux/wishlist_redux";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaRupeeSign } from "react-icons/fa";
 
-const Cart = () => {
-  const cart = useSelector((state) => state.cart);
+const Wishlist = () => {
+  const wishlist = useSelector((state) => state.wishlist);
   const dispatch = useDispatch();
 
-  const inc = (id) => {
-    dispatch(cartAction.inc(id));
-  };
-
-  const dec = (id) => {
-    dispatch(cartAction.dec(id));
-  };
-
   const deleteItem = (id) => {
-    dispatch(cartAction.remove(id));
+    dispatch(wishlistAction.remove(id));
   };
 
   const deleteAll = (id) => {
-    dispatch(cartAction.reset(id));
+    dispatch(wishlistAction.reset(id));
   };
 
   return (
     <div div className="container">
-      {cart.length !== 0 ? (
+      {wishlist.length !== 0 ? (
         <>
           <table
             style={{
@@ -44,8 +36,8 @@ const Cart = () => {
               {/* <th>Action</th> */}
             </tr>
 
-            {cart.map((e, index) => {
-              console.log(cart);
+            {wishlist.map((e, index) => {
+              console.log(Wishlist);
 
               return (
                 <tr key={index} style={{ fontWeight: "bold", color: "white" }}>
@@ -62,10 +54,7 @@ const Cart = () => {
                     {parseFloat(e.price) * parseFloat(e.amount)}
                   </td>
                   {console.log(e.amount)}
-                  <td>
-                    <button onClick={dec.bind(this, e.id)}>-</button> {e.amount}{" "}
-                    <button onClick={inc.bind(this, e.id)}>+</button>
-                  </td>
+
                   <td>
                     <FaTrashAlt
                       className="trash"
@@ -77,16 +66,12 @@ const Cart = () => {
             })}
           </table>
           <button onClick={deleteAll}>Remove All</button>
-          <h3 style={{ fontWeight: "bold", color: "white" }}>
-            Grand Total :{" "}
-            {cart.reduce((product, item) => product +( item.price * item.amount), 0)}
-          </h3>
         </>
       ) : (
-        <p style={{ fontWeight: "bold", color: "white" }}>Empty Cart</p>
+        <p style={{ fontWeight: "bold", color: "white" }}>Empty Wishlist</p>
       )}
     </div>
   );
 };
 
-export default Cart;
+export default Wishlist;
