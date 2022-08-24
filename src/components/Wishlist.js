@@ -1,10 +1,14 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { wishlistAction } from "./redux/wishlist_redux";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaRupeeSign } from "react-icons/fa";
+import { wishlistApiCall } from "./wishlistApiCall";
+import { useParams } from "react-router";
+
 
 const Wishlist = () => {
+  
   const wishlist = useSelector((state) => state.wishlist);
   const dispatch = useDispatch();
 
@@ -15,6 +19,16 @@ const Wishlist = () => {
   const deleteAll = (id) => {
     dispatch(wishlistAction.reset(id));
   };
+
+  const [productWishlist, setProductWishlist] = useState();
+  useEffect(() => {
+    wishlistApiCall().then((res) => {
+      setProductWishlist(res);
+    });
+  }, []);
+
+  const { product_id } = useParams();
+  console.log(product_id);
 
   return (
     <div div className="container">
@@ -36,34 +50,42 @@ const Wishlist = () => {
               {/* <th>Action</th> */}
             </tr>
 
-            {wishlist.map((e, index) => {
-              console.log(Wishlist);
+            {productWishlist === undefined ? (
+              <h1>Loading...</h1>
+            ) : (
+              productWishlist.data
+                .filter((product) => product._id === product_id)
+                .map((productWishlist, e, index) => (
+                  // {wishlist.map((e, index) => {
+                  //   console.log(Wishlist);
 
-              return (
-                <tr key={index} style={{ fontWeight: "bold", color: "white" }}>
-                  <td>{e.id}</td>
-                  <td>{e.name}</td>
+                  <tr
+                    key={index}
+                    style={{ fontWeight: "bold", color: "white" }}
+                  >
+                    <td>{e.id}</td>
+                    <td>{e.name}</td>
 
-                  <td>
-                    <FaRupeeSign />
-                    {e.price}
-                  </td>
+                    <td>
+                      <FaRupeeSign />
+                      {e.price}
+                    </td>
 
-                  <td>
-                    <FaRupeeSign />
-                    {parseFloat(e.price) * parseFloat(e.amount)}
-                  </td>
-                  {console.log(e.amount)}
+                    <td>
+                      <FaRupeeSign />
+                      {parseFloat(e.price) * parseFloat(e.amount)}
+                    </td>
+                    {console.log(e.amount)}
 
-                  <td>
-                    <FaTrashAlt
-                      className="trash"
-                      onClick={deleteItem.bind(this, e.id)}
-                    ></FaTrashAlt>
-                  </td>
-                </tr>
-              );
-            })}
+                    <td>
+                      <FaTrashAlt
+                        className="trash"
+                        onClick={deleteItem.bind(this, e.id)}
+                      ></FaTrashAlt>
+                    </td>
+                  </tr>
+                ))
+            )}
           </table>
           <button onClick={deleteAll}>Remove All</button>
         </>

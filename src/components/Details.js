@@ -1,42 +1,28 @@
-import Data from "../db.json";
-import { useParams, Link } from "react-router-dom";
-import React from "react";
+// import Data from "../db.json";
+import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { cartAction } from "./redux/cart";
 import { wishlistAction } from "./redux/wishlist_redux";
 import { FaRegHeart } from "react-icons/fa";
-
-var axios = require("axios");
-var data = JSON.stringify({
-  productId: "2",
-  productName: "air jordan",
-  productPrice: "30000",
-});
-
-var config = {
-  method: "post",
-  url: "http://localhost:8080/auth/wishlist",
-  headers: {
-    "Content-Type": "application/json",
-  },
-  data: data,
-};
-
-axios(config)
-  .then(function (response) {
-    console.log(JSON.stringify(response.data));
-  })
-  .catch(function (error) {
-    console.log(error);
-  });
+import productApiCall from "./productApiCall";
+import { useParams } from "react-router";
+import { wishlistSaveApi } from "./wishlistApiCall";
 
 const Details = () => {
-  //todo call get productsAPIs in use effects
+  var User = JSON.parse(localStorage.getItem("token"));
+  const userId = (User.data._id);
+  const [productDetails, setProductDetails] = useState();
+  useEffect(() => {
+    productApiCall().then((res) => {
+      setProductDetails(res);
+    });
+  }, []);
+
+  //////////////////////////////////////////////////////////
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  // add to wishlist handler calls add to  wishlist api refence by api
   const addToCart = (product) => {
-    console.log(product["id"], product["name"], product["price"]);
     const isAdded = cart.some((id) => {
       return id === product.id;
     });
@@ -57,8 +43,15 @@ const Details = () => {
 
   //wishlist
   const wishlist = useSelector((state) => state.wishlist);
-  // add to wishlist handler calls add to  wishlist api refence by api
-  const addToWishlist = (product) => {
+  const addToWishlist = (userId) => {
+    wishlistSaveApi({
+      id: product.id,
+      name: product.name,
+      price: product.price,
+      amount: 1,
+      userId: userId,
+    });
+
     console.log(product["id"], product["name"], product["price"]);
     const isAdded = wishlist.some((id) => {
       return id === product.id;
@@ -78,43 +71,51 @@ const Details = () => {
     }
   };
 
-  const params = useParams();
-  console.log(params.product_id);
+  // const params = useParams();
+  // console.log(params.product_id);
 
-  const product_detail = Data.products.find((detail) => {
-    console.log(detail);
-    return detail.id == params.product_id;
-  });
+  // const product_detail = Data.products.find((detail) => {
+  //   console.log(detail);
+  //   return detail.id == params.product_id;
+  // });
   // console.log(product_detail);
 
+  const { product_id } = useParams();
+  console.log(product_id);
   return (
     <>
       <div className="container">
         <h1 className="second_head">PRODUCTS DETAILS</h1>
         <div className="app col-10 mx-auto col-md-6 col-lg-3 my-3">
           <div className="products">
-            {product_detail && (
-              <div>
-                <h3>{product_detail.name}</h3>
-                <p>{product_detail.desc}</p>
-                <img src={product_detail.large} alt={product_detail.name} />
-                <h2>{product_detail.price}</h2>
-                <Link to="/cart">
-                  <button
-                    className="sign_up"
-                    onClick={addToCart.bind(this, product_detail)}
-                  >
-                    Buy Now
-                  </button>
-                </Link>
-                <Link to="/Wishlist">
-                  <FaRegHeart
-                    size={20}
-                    className="whislist"
-                    onClick={addToWishlist.bind(this, product_detail)}
-                  ></FaRegHeart>
-                </Link>
-              </div>
+            {productDetails === undefined ? (
+              <h1>Loading...</h1>
+            ) : (
+              productDetails.data
+                .filter((product) => product._id === product_id)
+                .map((productDetails) => (
+                  <div key={productDetails.id}>
+                    <h3>{productDetails.name}</h3>
+                    <p>{productDetails.desc}</p>
+                    {/* <img src={productDetails.large} alt={productDetails.name} /> */}
+                    <h2>{productDetails.price}</h2>
+                    <Link to="/cart">
+                      <button
+                        className="sign_up"
+                        onClick={addToCart.bind(this, productDetails)}
+                      >
+                        Buy Now
+                      </button>
+                    </Link>
+                    <Link to="/Wishlist">
+                      <FaRegHeart
+                        size={20}
+                        className="whislist"
+                        onClick={addToWishlist(userId).bind(this, productDetails)}
+                      ></FaRegHeart>
+                    </Link>
+                  </div>
+                ))
             )}
           </div>
         </div>

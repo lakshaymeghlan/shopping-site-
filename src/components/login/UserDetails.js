@@ -8,7 +8,7 @@ export default class UserDetails extends Component {
     };
   }
   componentDidMount() {
-    fetch("http://localhost:8080/userData", {
+    fetch("http://localhost:8080/auth/userData", {
       method: "POST",
       crossDomain: true,
       headers: {
