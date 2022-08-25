@@ -10,27 +10,27 @@ const wishlist = createSlice({
       return [...state, action.payload];
     },
 
-    inc: (state, action) => {
-      const newState = state.map((e) => {
-        if (e.id === action.payload) {
-          e.amount++;
-        }
-        return e;
-      });
-      state = newState;
-    },
+    // inc: (state, action) => {
+    //   const newState = state.map((e) => {
+    //     if (e.id === action.payload) {
+    //       e.amount++;
+    //     }
+    //     return e;
+    //   });
+    //   state = newState;
+    // },
 
-    dec: (state, action) => {
-      const newState = state.map((e) => {
-        if (e.id === action.payload) {
-          if (e.amount > 1) {
-            e.amount--;
-          }
-        }
-        return e;
-      });
-      state = newState;
-    },
+    // dec: (state, action) => {
+    //   const newState = state.map((e) => {
+    //     if (e.id === action.payload) {
+    //       if (e.amount > 1) {
+    //         e.amount--;
+    //       }
+    //     }
+    //     return e;
+    //   });
+    //   state = newState;
+    // },
 
     remove: (state, action) => {
       const newState = state.filter((e) => {

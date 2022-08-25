@@ -8,3 +8,19 @@ export const cartApiCall = async () => {
     });
   return cartApiCall;
 };
+
+
+export const cartSaveApiCall = async (product) => {
+  const cartApiCall = await axios
+    .get("http://localhost:8080/cart/cart",product)
+    .then(console.log(product)
+    );
+  return cartApiCall;
+};
+
+export const cartProductApi = async (userId) => {
+  const cartProductApi = await axios
+    .get(`http://localhost:8080/cart/cartProduct/${userId}`)
+    .then((res)=>{return(res)});
+  return cartProductApi;
+};

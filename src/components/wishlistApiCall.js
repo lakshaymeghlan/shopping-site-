@@ -18,7 +18,7 @@ export const wishlistSaveApi = async (product) => {
 
 export const wishlistProductApi = async (userId) => {
     const wishlistProductApi = await axios
-      .get(`http://localhost:8080/wishlist/wishlistProduct/${id}`, userId)
-      .then(console.log(userId));
+      .get(`http://localhost:8080/wishlist/wishlistProduct/${userId}`)
+      .then((res)=>{return(res)});
     return wishlistProductApi;
   };

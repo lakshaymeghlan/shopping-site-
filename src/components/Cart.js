@@ -1,11 +1,19 @@
-import React from "react";
+import React,{useState,useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { cartAction } from "./redux/cart";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaRupeeSign } from "react-icons/fa";
 // import cart from "./redux/cart";
+// import { wishlistApiCall } from "./wishlistApiCall";
+// import { cartApiCall } from "./cartApicall";
+import { cartProductApi } from "./cartApicall";
+import { useParams } from "react-router";
 
 const Cart = () => {
+
+  var User = JSON.parse(localStorage.getItem("token"));
+  const userId = User.data._id;
+  
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
@@ -27,9 +35,11 @@ const Cart = () => {
 
   const [productCart, setProductCart] = useState();
   useEffect(() => {
-    wishlistApiCall().then((res) => {
-      setProductCart(res);
-    });
+    // cartApiCall().then((res) => {
+    //   setProductCart(res);
+    // });
+    cartProductApi(userId).then((res)=>setProductCart(res));
+
   }, []);
 
   const { product_id } = useParams();
@@ -62,7 +72,7 @@ const Cart = () => {
                 .filter((product) => product._id === product_id)
                 .map((productCart, e, index) => (
                   
-                  <div>
+                  <div key={cart}>
                     <tr
                       key={index}
                       style={{ fontWeight: "bold", color: "white" }}

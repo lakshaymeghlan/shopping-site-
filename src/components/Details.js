@@ -11,7 +11,8 @@ import { wishlistSaveApi } from "./wishlistApiCall";
 
 const Details = () => {
   var User = JSON.parse(localStorage.getItem("token"));
-  const userId = (User.data._id);
+  const userId = User.data._id;
+
   const [productDetails, setProductDetails] = useState();
   useEffect(() => {
     productApiCall().then((res) => {
@@ -43,7 +44,7 @@ const Details = () => {
 
   //wishlist
   const wishlist = useSelector((state) => state.wishlist);
-  const addToWishlist = (userId) => {
+  const addToWishlist = (product) => {
     wishlistSaveApi({
       id: product.id,
       name: product.name,
@@ -70,15 +71,6 @@ const Details = () => {
       alert("Already Added");
     }
   };
-
-  // const params = useParams();
-  // console.log(params.product_id);
-
-  // const product_detail = Data.products.find((detail) => {
-  //   console.log(detail);
-  //   return detail.id == params.product_id;
-  // });
-  // console.log(product_detail);
 
   const { product_id } = useParams();
   console.log(product_id);
@@ -111,7 +103,7 @@ const Details = () => {
                       <FaRegHeart
                         size={20}
                         className="whislist"
-                        onClick={addToWishlist(userId).bind(this, productDetails)}
+                        onClick={addToWishlist.bind(this, productDetails)}
                       ></FaRegHeart>
                     </Link>
                   </div>

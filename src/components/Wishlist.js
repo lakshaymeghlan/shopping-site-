@@ -3,12 +3,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { wishlistAction } from "./redux/wishlist_redux";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaRupeeSign } from "react-icons/fa";
-import { wishlistApiCall } from "./wishlistApiCall";
+// import { wishlistApiCall } from "./wishlistApiCall";
 import { useParams } from "react-router";
-
+import { wishlistProductApi } from "./wishlistApiCall";
 
 const Wishlist = () => {
-  
+  var User = JSON.parse(localStorage.getItem("token"));
+  const userId = User.data._id;
+
   const wishlist = useSelector((state) => state.wishlist);
   const dispatch = useDispatch();
 
@@ -22,9 +24,10 @@ const Wishlist = () => {
 
   const [productWishlist, setProductWishlist] = useState();
   useEffect(() => {
-    wishlistApiCall().then((res) => {
-      setProductWishlist(res);
-    });
+    // wishlistApiCall().then((res) => {
+    //   setProductWishlist(res);
+    // });
+    wishlistProductApi(userId).then((res) => setProductWishlist(res));
   }, []);
 
   const { product_id } = useParams();
@@ -45,46 +48,41 @@ const Wishlist = () => {
               <th>Id</th>
               <th>Name</th>
               <th>Price</th>
-              <th>Total Price</th>
-              <th>Amount</th>
+              <th>Action</th>
+            
               {/* <th>Action</th> */}
             </tr>
 
             {productWishlist === undefined ? (
               <h1>Loading...</h1>
             ) : (
-              productWishlist.data
-                .filter((product) => product._id === product_id)
-                .map((productWishlist, e, index) => (
+              productWishlist.data.map(
+                (product, index) => (
                   // {wishlist.map((e, index) => {
-                  //   console.log(Wishlist);
+                  
+                  (
+                    <tr
+                      key={index}
+                      style={{ fontWeight: "bold", color: "white" }}
+                    >
+                      <td>{index}</td>
+                      <td>{product.productName}</td>
 
-                  <tr
-                    key={index}
-                    style={{ fontWeight: "bold", color: "white" }}
-                  >
-                    <td>{e.id}</td>
-                    <td>{e.name}</td>
+                      <td>
+                        <FaRupeeSign />
+                        {product.productPrice}
+                      </td>
 
-                    <td>
-                      <FaRupeeSign />
-                      {e.price}
-                    </td>
-
-                    <td>
-                      <FaRupeeSign />
-                      {parseFloat(e.price) * parseFloat(e.amount)}
-                    </td>
-                    {console.log(e.amount)}
-
-                    <td>
-                      <FaTrashAlt
-                        className="trash"
-                        onClick={deleteItem.bind(this, e.id)}
-                      ></FaTrashAlt>
-                    </td>
-                  </tr>
-                ))
+                      <td>
+                        <FaTrashAlt
+                          className="trash"
+                          onClick={deleteItem.bind(this, product.id)}
+                        ></FaTrashAlt>
+                      </td>
+                    </tr>
+                  )
+                )
+              )
             )}
           </table>
           <button onClick={deleteAll}>Remove All</button>
