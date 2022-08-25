@@ -3,13 +3,11 @@ import { SocialIcon } from 'react-social-icons';
 import {
   MDBFooter,
   MDBContainer,
-  MDBCol,
-  MDBRow,
-  MDBIcon
 } from 'mdb-react-ui-kit';
 
  function Footer() {
   return (
+    <footer>
     <MDBFooter className='bg-dark text-center text-white'>
       <MDBContainer className='p-4 pb-0'>
         <section className='mb-4'>
@@ -39,6 +37,7 @@ import {
         <p>SHOP</p>
       </div>
     </MDBFooter>
+    </footer>
   );
 }
 
