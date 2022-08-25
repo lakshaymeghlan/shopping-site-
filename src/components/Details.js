@@ -8,6 +8,7 @@ import { FaRegHeart } from "react-icons/fa";
 import productApiCall from "./productApiCall";
 import { useParams } from "react-router";
 import { wishlistSaveApi } from "./wishlistApiCall";
+import { cartSaveApiCall } from "./cartApicall";
 
 const Details = () => {
   var User = JSON.parse(localStorage.getItem("token"));
@@ -27,14 +28,21 @@ const Details = () => {
     const isAdded = cart.some((id) => {
       return id === product.id;
     });
-
+    
     if (!isAdded) {
+      cartSaveApiCall({id: product.id,
+        name: product.name,
+        price: product.price,
+        amount: 1,
+        userId: userId,})
       dispatch(
+
         cartAction.add({
           id: product.id,
           name: product.name,
           price: product.price,
           amount: 1,
+          userId: userId,
         })
       );
     } else {

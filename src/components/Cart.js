@@ -1,19 +1,15 @@
-import React,{useState,useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { cartAction } from "./redux/cart";
 import { FaTrashAlt } from "react-icons/fa";
 import { FaRupeeSign } from "react-icons/fa";
-// import cart from "./redux/cart";
-// import { wishlistApiCall } from "./wishlistApiCall";
-// import { cartApiCall } from "./cartApicall";
 import { cartProductApi } from "./cartApicall";
 import { useParams } from "react-router";
 
 const Cart = () => {
-
   var User = JSON.parse(localStorage.getItem("token"));
   const userId = User.data._id;
-  
+
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
 
@@ -35,11 +31,7 @@ const Cart = () => {
 
   const [productCart, setProductCart] = useState();
   useEffect(() => {
-    // cartApiCall().then((res) => {
-    //   setProductCart(res);
-    // });
-    cartProductApi(userId).then((res)=>setProductCart(res));
-
+    cartProductApi(userId).then((res) => setProductCart(res));
   }, []);
 
   const { product_id } = useParams();
@@ -68,41 +60,40 @@ const Cart = () => {
             {productCart === undefined ? (
               <h1>Loading...</h1>
             ) : (
-              productCart.data
-                .filter((product) => product._id === product_id)
-                .map((productCart, e, index) => (
-                  
-                  <div key={cart}>
+              productCart.data.map(
+                (product, index) => (
+                  // <div key={cart}>
                     <tr
                       key={index}
                       style={{ fontWeight: "bold", color: "white" }}
                     >
-                      <td>{e.id}</td>
-                      <td>{e.name}</td>
+                      <td>{index}</td>
+                      <td>{product.productName}</td>
 
                       <td>
                         <FaRupeeSign />
-                        {e.price}
+                        {product.productPrice}
                       </td>
 
                       <td>
                         <FaRupeeSign />
-                        {parseFloat(e.price) * parseFloat(e.amount)}
+                        {parseFloat(product.productPrice) *
+                          parseFloat(product.productPrice)}
                       </td>
-                      {console.log(e.amount)}
+                      {/* {console.log(e.amount)} */}
                       <td>
-                        <button onClick={dec.bind(this, e.id)}>-</button>{" "}
-                        {e.amount}{" "}
-                        <button onClick={inc.bind(this, e.id)}>+</button>
+                        <button onClick={dec.bind(this, index)}>-</button>{" "}
+                        {index.amount}{" "}
+                        <button onClick={inc.bind(this, index)}>+</button>
                       </td>
                       <td>
                         <FaTrashAlt
                           className="trash"
-                          onClick={deleteItem.bind(this, e.id)}
+                          onClick={deleteItem.bind(this, product.id)}
                         ></FaTrashAlt>
                       </td>
                     </tr>
-                  </div>
+                  // </div>
                 ))
             )}
           </table>
