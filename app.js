@@ -1,146 +1,62 @@
-const express = require("express");
+//npm module
+import express from "express";
 const app = express();
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+import cors from "cors";
+
+
+//helpers
+import authenticationRoutes from "./src/Routes/authenticationRoutes";
+import productRoutes from "./src/Routes/productRoutes";
+import cartRoutes from "./src/Routes/cartRoutes";
+import whishlistRoutes from "./src/Routes/whishlistRoutes";
+
+
+
+
+//constants
+const PORT = 8080;
+const MONGO_URL =
+  "mongodb+srv://lakshay:lakshay1234@cluster0.iix5z.mongodb.net/wishlist?retryWrites=true&w=majority";
+
+//mongoDB connection
+mongoose
+  .connect(MONGO_URL, {
+    useNewUrlParser: true,
+  })
+  .then(() => {
+    console.log("connected to database", MONGO_URL);
+  })
+  .catch((e) => console.log(e));
+
+// routing
 app.use(express.json());
-const cors = require("cors")
-const bcrypt=require("bcryptjs")
 app.use(cors());
-
-const jwt = require("jsonwebtoken");
-
-const JWT_SECRET =
-  "hvdvay6ert72839289()aiyg8t87qt72393293883uhefiuh78ttq3ifi78272jbkj?[]]pou89ywe";
-
-const mongoURL = "mongodb+srv://lakshay:lakshay1234@cluster0.iix5z.mongodb.net/?retryWrites=true&w=majority";
-
-mongoose.connect(mongoURL,{
-    useNewUrlParser:true
-})
-.then(()=>{
-    console.log("connected to database");
-})
-.catch((e)=>console.log(e));
+app.use("/auth", authenticationRoutes);
+app.use("/product",productRoutes);
+app.use("/cart",cartRoutes);
+app.use("/wishlist",whishlistRoutes);
 
 
-require("./userDetails")
+//products // carts //whislists
 
-const User=mongoose.model("UserInfo");
-app.post("/register",async(req,res)=>{
-    const {fname,lname,email,password}=req.body;
-
-    const encryptedPassword = await bcrypt.hash(password, 10);
-  try {
-    const oldUser = await User.findOne({ email });
-
-    if (oldUser) {
-      return res.json({ error: "User Exists" });
-    }
-    await User.create({
-        fname,
-        lname,
-        email,
-        password: encryptedPassword,
-      });
-      res.send({ status: "ok" });
-    } catch (error) {
-      res.send({ status: "error" });
-    }
-  });
-
-  app.post("/login-user", async (req, res) => {
-    const { email, password } = req.body;
-  
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.json({ error: "User Not found" });
-    }
-    if (await bcrypt.compare(password, user.password)) {
-      const token = jwt.sign({ email: user.email }, JWT_SECRET);
-  
-      if (res.status(201)) {
-        return res.json({ status: "ok", data: token });
-      } else {
-        return res.json({ error: "error" });
-      }
-    }
-    res.json({ status: "error", error: "InvAlid Password" });
-  });
- 
-  app.post("/userData", async (req, res) => {
-    const { token } = req.body;
-    try {
-      const user = jwt.verify(token, JWT_SECRET);
-      console.log(user);
-  
-      const useremail = user.email;
-      User.findOne({ email: useremail })
-        .then((data) => {
-          res.send({ status: "ok", data: data });
-        })
-        .catch((error) => {
-          res.send({ status: "error", data: error });
-        });
-    } catch (error) {}
-  });
-
-
-app.listen(5000, () => {
-  console.log("server started");
+//server
+app.listen(PORT, () => {
+  console.log("server start on port", PORT);
 });
 
 
 
+/*  products
+    add product, delete product, *get products, update products
 
+    wishlist
+    add ,delete and get - frontend
 
+    cart
+    add ,delete and get - frontend
 
+  login/signup
 
+*/
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-// app.post("/post", async (req, res) => {
-//   console.log(req.body);
-  
-//   const { data } = req.body;
-
-//   try {
-//     if (data == "Lakshay") {
-//       res.send({ status: "ok" });
-//     } else {
-//       res.send({ status: "user not found" });
-//     }
-//   } catch (error) {
-//     res.send({ status: "error" });
-//   }
-// });
-
-
-// require("./userDetails");
-
-// const User=mongoose.model("UserInfo");
-
-// app.post("/register",async(req,res)=>{
-//     const {name,email,mobileNo} = req.body
-//     try {
-//         await User.create({
-//             uname:name,
-//             email,
-//             phoneNo:mobileNo,
-//         })
-//         res.send({status:"ok"})
-//     } catch (error) {
-//         res.send({status:"error"}) 
-//     }
-// });
