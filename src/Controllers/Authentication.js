@@ -1,5 +1,4 @@
 // npm modules
-import express from "express";
 import bcrypt from "bcryptjs";
 import _ from "lodash";
 import jwt from "jsonwebtoken";
@@ -9,8 +8,6 @@ import UserSchema from "../Schema/userDetails";
 // constants
 const JWT_SECRET =
   "hvdvay6ert72839289()aiyg8t87qt72393293883uhefiuh78ttq3ifi78272jbkj?[]]pou89ywe";
-
-const router = express.Router();
 
 const register = async (req, res) => {
   const { fname, lname, email, password } = req.body;
@@ -42,7 +39,6 @@ const register = async (req, res) => {
 
 const login = async (req, res) => {
   const { email, password } = req.body;
-
 
   const user = await UserSchema.findOne({ email });
   if (!user) {
@@ -78,14 +74,3 @@ const getUser = async (req, res) => {
 };
 
 export default { register, login, getUser };
-
-/*
-find 
-findOne
-findOneAnd update
-findById
-findByIdAndUpdate
-delete
-
-
-*/

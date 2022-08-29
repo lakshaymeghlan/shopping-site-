@@ -17,7 +17,7 @@ import whishlistRoutes from "./src/Routes/whishlistRoutes";
 //constants
 const PORT = 8080;
 const MONGO_URL =
-  "mongodb+srv://lakshay:lakshay1234@cluster0.iix5z.mongodb.net/wishlist?retryWrites=true&w=majority";
+  "mongodb+srv://lakshay:lakshay1234@cluster0.iix5z.mongodb.net/ShopAndWalk?retryWrites=true&w=majority";
 
 //mongoDB connection
 mongoose
