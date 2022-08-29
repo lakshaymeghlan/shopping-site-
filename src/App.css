@@ -1,0 +1,122 @@
+/* .App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+} */
+
+body{
+  background-color: #171f27;
+}
+
+.navbar{
+  background-color: #171f27;
+}
+.products{
+  color: white;
+  padding: 2rem;
+  
+  
+}
+
+.anchor_cls{
+  color: white;
+  text-decoration: underline;
+}
+.second_head{
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  text-decoration: underline;
+}
+
+.card-text{
+  text-align: center;
+  color: white;
+}
+.card-title{
+  text-align: center;
+  color: white;
+}
+
+.nav-items{
+  text-decoration: none;
+  color: white;
+  font-size: 18px;
+  margin-right: 30px;
+}
+.login{
+  background-color: white;
+  
+}
+.anchor_cls{
+  margin-top: 2rem;
+}
+.cart_img{
+  border-image-width: 3rem;
+}
+.cart_img{
+  width: 5rem;
+  height: 5rem;
+}
+.log_in{
+  color: white;
+
+}
+.sign_up{
+  border-radius: 6px;
+  margin-top: 8px;
+  
+}
+.user_det{
+  color: white;
+}
+
+.trash{
+  margin-right: 3rem;
+  
+}
+
+.whislist{
+  margin-left: 1rem;
+  size: 3rem;;
+}
+.whislist_nav{
+  margin-right:3rem;
+  color: red;
+}
+/* .FaHeart{
+  color:red;
+} */
