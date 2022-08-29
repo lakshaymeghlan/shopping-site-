@@ -23,9 +23,6 @@ const Wishlist = () => {
 
   const [productWishlist, setProductWishlist] = useState();
   useEffect(() => {
-    // wishlistApiCall().then((res) => {
-    //   setProductWishlist(res);
-    // });
     wishlistProductApi(userId).then((res) => setProductWishlist(res));
   }, []);
 
@@ -48,40 +45,33 @@ const Wishlist = () => {
               <th>Name</th>
               <th>Price</th>
               <th>Action</th>
-            
+
               {/* <th>Action</th> */}
             </tr>
 
             {productWishlist === undefined ? (
               <h1>Loading...</h1>
             ) : (
-              productWishlist.data.map(
-                (product, index) => (
-                  // {wishlist.map((e, index) => {
-                  
-                  (
-                    <tr
-                      key={index}
-                      style={{ fontWeight: "bold", color: "white" }}
-                    >
-                      <td>{index}</td>
-                      <td>{product.productName}</td>
+              productWishlist.data.map((product, index) => (
+                // {wishlist.map((e, index) => {
 
-                      <td>
-                        <FaRupeeSign />
-                        {product.productPrice}
-                      </td>
+                <tr key={index} style={{ fontWeight: "bold", color: "white" }}>
+                  <td>{index}</td>
+                  <td>{product.productName}</td>
 
-                      <td>
-                        <FaTrashAlt
-                          className="trash"
-                          onClick={deleteItem.bind(this, product.id)}
-                        ></FaTrashAlt>
-                      </td>
-                    </tr>
-                  )
-                )
-              )
+                  <td>
+                    <FaRupeeSign />
+                    {product.productPrice}
+                  </td>
+
+                  <td>
+                    <FaTrashAlt
+                      className="trash"
+                      onClick={deleteItem.bind(this, product.id)}
+                    ></FaTrashAlt>
+                  </td>
+                </tr>
+              ))
             )}
           </table>
           <button onClick={deleteAll}>Remove All</button>

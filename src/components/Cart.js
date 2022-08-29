@@ -60,41 +60,37 @@ const Cart = () => {
             {productCart === undefined ? (
               <h1>Loading...</h1>
             ) : (
-              productCart.data.map(
-                (product, index) => (
-                  // <div key={cart}>
-                    <tr
-                      key={index}
-                      style={{ fontWeight: "bold", color: "white" }}
-                    >
-                      <td>{index}</td>
-                      <td>{product.productName}</td>
+              productCart.data.map((product, index) => (
+                // <div key={cart}>
+                <tr key={index} style={{ fontWeight: "bold", color: "white" }}>
+                  <td>{index}</td>
+                  <td>{product.productName}</td>
 
-                      <td>
-                        <FaRupeeSign />
-                        {product.productPrice}
-                      </td>
+                  <td>
+                    <FaRupeeSign />
+                    {product.productPrice}
+                  </td>
 
-                      <td>
-                        <FaRupeeSign />
-                        {parseFloat(product.productPrice) *
-                          parseFloat(product.productPrice)}
-                      </td>
-                      {/* {console.log(e.amount)} */}
-                      <td>
-                        <button onClick={dec.bind(this, index)}>-</button>{" "}
-                        {index.amount}{" "}
-                        <button onClick={inc.bind(this, index)}>+</button>
-                      </td>
-                      <td>
-                        <FaTrashAlt
-                          className="trash"
-                          onClick={deleteItem.bind(this, product.id)}
-                        ></FaTrashAlt>
-                      </td>
-                    </tr>
-                  // </div>
-                ))
+                  <td>
+                    <FaRupeeSign />
+                    {parseFloat(product.productPrice) *
+                      parseFloat(product.productPrice)}
+                  </td>
+                  {/* {console.log(e.amount)} */}
+                  <td>
+                    <button onClick={dec.bind(this, index)}>-</button>{" "}
+                    {index.amount}{" "}
+                    <button onClick={inc.bind(this, index)}>+</button>
+                  </td>
+                  <td>
+                    <FaTrashAlt
+                      className="trash"
+                      onClick={deleteItem.bind(this, product.id)}
+                    ></FaTrashAlt>
+                  </td>
+                </tr>
+                // </div>
+              ))
             )}
           </table>
           <button onClick={deleteAll}>Remove All</button>
